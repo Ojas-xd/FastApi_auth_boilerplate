@@ -7,4 +7,5 @@ class User(Base):
     hashed_password=Column(String,nullable=False)
     role=Column(String,default="user")
     is_active=Column(Boolean,default=True)
-        
+    is_verified=Column(Boolean,default=False)
+    verification_token=Column(String,nullable=True)     

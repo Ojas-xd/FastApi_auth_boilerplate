@@ -5,6 +5,7 @@ from app.schemas.user import UserCreate, UserLogin, UserResponse,RefreshTokenReq
 from app.services.auth_services import register_user, login_user,refresh_access_token
 from app.dependencies import get_current_user
 from app.models.user import User
+from app.services.verification_service import verify_token
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
@@ -23,3 +24,7 @@ def me(current_user: User = Depends(get_current_user)):
 @router.post("/refresh")
 def refresh(data: RefreshTokenRequest, db: Session = Depends(get_db)):
     return refresh_access_token(data.refresh_token)
+
+@router.get("/verify")
+def ver( token:str,db: Session = Depends(get_db)):
+    return verify_token(db,token)
