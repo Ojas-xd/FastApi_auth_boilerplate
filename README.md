@@ -37,8 +37,7 @@ FastApi_auth_boilerplate/
 │   └── main.py
 ├── .env
 ├── .env.example
-├── .gitignore
-└── requirements.txt
+└── .gitignore
 ```
 
 ## Prerequisites
@@ -68,13 +67,7 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-### 3. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Setup environment variables
+### 3. Setup environment variables
 
 Copy `.env.example` to `.env` and fill in your values:
 
@@ -82,23 +75,19 @@ Copy `.env.example` to `.env` and fill in your values:
 cp .env.example .env
 ```
 
-### 5. Start Redis via Docker
+### 4. Start Redis via Docker
 
 ```bash
 docker run -d --name redis -p 6379:6379 redis:alpine
 ```
 
-### 6. Create PostgreSQL database
+### 5. Create PostgreSQL database
 
 ```sql
 CREATE DATABASE auth_db;
 ```
 
-### 7. Run database migrations
-
-```bash
-python -c "from app.database import Base, engine; from app.models import user, verification; Base.metadata.create_all(bind=engine)"
-```
+> Tables are created automatically when the FastAPI server starts.
 
 ## Running the App
 
